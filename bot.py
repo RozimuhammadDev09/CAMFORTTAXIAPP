@@ -810,8 +810,8 @@ def handle_callback(call):
                         order_code, passenger_name, passenger_phone, route_title, tariff,
                         passengers_count, seat_choice, has_luggage, base_price, discount_amount,
                         final_price, status, created_at, group_msg_id
-                    ) VALUES (?, 'Yo\'lovchi', '+998901234567', ?, ?, ?, ?, ?, ?, 0, ?, 'pending', ?, ?)
-                """, (order_code, route_title, tariff, passengers_count, seat_choice, luggage, final_price, final_price, now_str, call.message.message_id))
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, 'pending', ?, ?)
+                """, (order_code, "Yo'lovchi", "+998901234567", route_title, tariff, passengers_count, seat_choice, luggage, final_price, final_price, now_str, call.message.message_id))
                 conn.commit()
                 new_id = cursor.lastrowid
                 cursor.execute("SELECT * FROM orders WHERE id = ?", (new_id,))
