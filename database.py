@@ -1,8 +1,20 @@
 import sqlite3
 import datetime
+import os
+import shutil
 from config import DATABASE_PATH
 
 def get_db():
+    dir_path = os.path.dirname(DATABASE_PATH)
+    if dir_path and not os.path.exists(dir_path):
+        os.makedirs(dir_path, exist_ok=True)
+    if not os.path.exists(DATABASE_PATH):
+        init_seed = os.path.join(os.path.dirname(os.path.abspath(__file__)), "camfort_taxi.db")
+        if os.path.exists(init_seed) and os.path.abspath(init_seed) != os.path.abspath(DATABASE_PATH):
+            try:
+                shutil.copy2(init_seed, DATABASE_PATH)
+            except Exception:
+                pass
     conn = sqlite3.connect(DATABASE_PATH)
     conn.row_factory = sqlite3.Row
     return conn

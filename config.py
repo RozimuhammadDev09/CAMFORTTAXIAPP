@@ -7,4 +7,4 @@ DRIVER_GROUP_ID = -1003888459573
 APP_NAME = "CAMFORT TAXI 1144"
 SERVER_HOST = "0.0.0.0"
 SERVER_PORT = int(os.environ.get("PORT", 5000))
-DATABASE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "camfort_taxi.db")
+DATABASE_PATH = os.environ.get("DATABASE_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "camfort_taxi.db"))
